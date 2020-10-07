@@ -89,7 +89,7 @@ export default class Parent extends React.Component {
     render() {
         return (
             <Fragment>
-                <Menubar language={this.state.language} onRun={this.onRun} onLanguageChange={this.onLanguageChange} onSwitchChange={this.onSwitchChange} runButtonDisabled={this.state.runButtonDisabled} runButtonText={this.state.runButtonText} />
+                <Menubar language={this.state.language} onRun={this.onRun} onLanguageChange={this.onLanguageChange} onSwitchChange={this.onSwitchChange} runButtonDisabled={this.state.runButtonDisabled} runButtonText={this.state.runButtonText} checked={this.state.inputView} />
                 <Editor onEditorValueChange={this.onEditorChange} value={this.state.editorValue} height={this.state.editorHeight} language={this.state.language} availModes={this.state.availModes} />
                 {
                     this.state.inputView ?

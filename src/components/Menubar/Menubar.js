@@ -27,7 +27,6 @@ export default class Menubar extends React.Component {
         this.state = {
             open: false,
             language: this.props.language,
-            checked: true,
             onLanguageChange: this.props.onLanguageChange,
             onSwitchChange: this.props.onSwitchChange,
             onRun: this.props.onRun,
@@ -36,10 +35,6 @@ export default class Menubar extends React.Component {
         console.log("button text: ", this.props.runButtonText);
     }
 
-    // const[open, setOpen] = React.useState(false);
-    // const[checked, setChecked] = React.useState(false);
-    // const[language, setLanguage] = React.useState('C++');
-
     onRun = () => {
         this.setState({ ...this.state, snackbar: true });
         console.log("submit: ", this.state);
@@ -47,7 +42,6 @@ export default class Menubar extends React.Component {
     }
 
     onSwitchChange = (event) => {
-        this.setState({ ...this.state, checked: event.target.checked });
         this.state.onSwitchChange(event.target.checked);
     }
 
@@ -108,7 +102,7 @@ export default class Menubar extends React.Component {
                                 <div id="dialog-ele" >
                                     <FormControlLabel
                                         value="end"
-                                        control={< Switch id="drop-down" checked={this.state.checked} onChange={this.onSwitchChange} />}
+                                        control={< Switch id="drop-down" checked={this.props.checked} onChange={this.onSwitchChange} />}
                                         label="Enter Input"
                                         labelPlacement="end"
                                     />
@@ -126,7 +120,6 @@ export default class Menubar extends React.Component {
                                         <MenuItem value={"CPP_14"}> <b>C++ </b></MenuItem >
                                         <MenuItem value={"C"}> <b>C </b></MenuItem >
                                         <MenuItem value={"JAVA"}> <b>Java </b></MenuItem >
-                                        <MenuItem value={"TypeScript"}> <b>TypeScript </b></MenuItem >
                                     </Select>
                                 </FormControl>
                             </DialogContent>
