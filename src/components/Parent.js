@@ -33,6 +33,7 @@ export default class Parent extends React.Component {
         let request = {
             script: this.state.editorValue,
             language: this.state.language,
+            stdin: this.state.inputValue,
         }
         let options = {
             method: 'POST',
