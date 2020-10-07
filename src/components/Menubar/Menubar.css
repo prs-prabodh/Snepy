@@ -1,0 +1,27 @@
+.main-nav {
+    background-color:rgb(40,42,54);
+    height: 10vh;
+}
+
+.primary-btn-text {
+    font-family: monospace;
+    font-weight: bold;
+}
+
+#lang-id {
+    color: #f50057;
+} 
+
+#drop-down {
+    color: #f50057;
+    min-width: 120px;
+}
+
+#dialog-ele {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.Navbar {
+    height: '2vh';
+}

@@ -1,0 +1,18 @@
+.output {
+    border-left: 1px solid rgb(70, 70, 70);
+    border-top: 1px solid rgb(70, 70, 70);
+}
+
+.input {
+    border-top: 1px solid rgb(70, 70, 70);
+}
+
+.io-nav {
+    background-color: rgb(44,42,54);
+    height: 4.9vh;
+}
+
+.navbar-brand {
+    font-size: 16px;
+    font-family: monospace;
+}
