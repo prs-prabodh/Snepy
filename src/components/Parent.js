@@ -61,6 +61,7 @@ export default class Parent extends React.Component {
             .catch(err => {
                 this.toggleButtonDisable(false)
                 this.toggleSnackbar(false);
+                this.toggleSnackbar(true, "Error 404! Snippet not found.", 8000, false);
                 console.log("err: ", err);
             })
     }
@@ -104,6 +105,7 @@ export default class Parent extends React.Component {
             .catch(err => {
                 this.toggleButtonDisable(false)
                 this.toggleSnackbar(false);
+                this.toggleSnackbar(true, "Unexpected error happened. Please try after some time.", 8000, false);
                 console.log("err: ", err);
             })
     }
@@ -160,6 +162,7 @@ export default class Parent extends React.Component {
             .catch(err => {
                 this.toggleButtonDisable(false)
                 this.toggleSnackbar(false);
+                this.toggleSnackbar(true, "Unexpected error happened. Please try after some time.", 8000, false);
                 console.log("err: ", err);
             })
     }
