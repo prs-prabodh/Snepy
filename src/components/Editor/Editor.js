@@ -12,14 +12,11 @@ export default class Editor extends React.Component {
         super(props);
         this.state = {
             onEditorValueChange: this.props.onEditorValueChange,
-            value: this.props.value,
             availModes: this.props.availModes,
         }
-        console.log("change detected: ", this.state);
     }
 
     onEditorValueChange = (change) => {
-        this.setState({ ...this.state.value, value: change });
         this.state.onEditorValueChange(change);
     }
 
@@ -39,7 +36,7 @@ export default class Editor extends React.Component {
                 showPrintMargin={false}
                 showGutter={true}
                 highlightActiveLine={true}
-                value={this.state.value}
+                value={this.props.value}
                 setOptions={{
                     enableBasicAutocompletion: false,
                     enableLiveAutocompletion: true,

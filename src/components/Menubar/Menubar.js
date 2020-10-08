@@ -16,6 +16,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import "./Menubar.css";
 
@@ -30,14 +31,11 @@ export default class Menubar extends React.Component {
             onLanguageChange: this.props.onLanguageChange,
             onSwitchChange: this.props.onSwitchChange,
             onRun: this.props.onRun,
-            snackbar: false,
+            onSave: this.props.onSave,
         }
-        console.log("button text: ", this.props.runButtonText);
     }
 
     onRun = () => {
-        this.setState({ ...this.state, snackbar: true });
-        console.log("submit: ", this.state);
         this.state.onRun();
     }
 
@@ -54,8 +52,15 @@ export default class Menubar extends React.Component {
         this.state.onLanguageChange(event);
     }
 
-    onSnackbarCloseClick = () => {
-        this.setState({ ...this.state, snackbar: false });
+    onSnackbarCloseClick = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        this.props.toggleSnackbar(false);
+    }
+
+    onSaveClick = () => {
+        this.state.onSave();
     }
 
     render() {
@@ -76,14 +81,21 @@ export default class Menubar extends React.Component {
                     <Snackbar
                         anchorOrigin={{
                             vertical: 'bottom',
-                            horizontal: 'left',
+                            horizontal: 'right',
                         }}
-                        open={this.state.snackbar}
-                        autoHideDuration={1000}
+                        open={this.props.snackbar}
                         onClose={this.onSnackbarCloseClick}
-                        message="Executing"
+                        message={this.props.snackbarText}
+                        autoHideDuration={this.props.snackbarTimeout}
                         action={
                             <React.Fragment>
+                                {
+                                    this.props.showSpinner ?
+                                        (
+                                            <CircularProgress id='snackbar-spinner' size={20} color="secondary" />
+                                        )
+                                        : null
+                                }
                                 <IconButton size="small" aria-label="close" color="inherit" onClick={this.onSnackbarCloseClick}>
                                     <CloseIcon fontSize="small" />
                                 </IconButton>
@@ -93,8 +105,11 @@ export default class Menubar extends React.Component {
                 </Navbar.Brand>
                 <Nav className="mr-auto" >
                     <Nav.Item>
-                        <Button variant="outlined" color="secondary" onClick={this.toggleDialog} >
-                            Options
+                        <Button id='extra-btn' variant="outlined" color="secondary" onClick={this.onSaveClick} >
+                            <div id='extra-btn-text'>Save</div>
+                        </Button>
+                        <Button id='extra-btn' variant="outlined" color="secondary" onClick={this.toggleDialog} >
+                            <div id='extra-btn-text'>Options</div>
                         </Button>
                         < Dialog open={this.state.open} onClose={this.toggleDialog} aria-labelledby="form-dialog-title" maxWidth="xs" fullWidth={true} >
                             <DialogTitle id="form-dialog-title" > Options </DialogTitle>

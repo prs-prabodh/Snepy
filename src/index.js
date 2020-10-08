@@ -4,11 +4,17 @@ import './index.css';
 import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Parent from './components/Parent';
+import {
+  BrowserRouter as Router,
+  Route,
+} from "react-router-dom";
 
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 
 ReactDOM.render(
-  <Parent />,
+  <Router>
+    <Route path={["/s/:snippetId", "/"]} component={Parent} />
+  </Router>,
   document.getElementById('root')
 );
 

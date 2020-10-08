@@ -25,3 +25,16 @@
 .Navbar {
     height: '2vh';
 }
+
+#extra-btn {
+    margin-left: 10px;
+}
+
+#extra-btn-text {
+    font-family: monospace;
+    font-weight: bold;
+}
+
+#snackbar-spinner {
+    margin-right: 20px;
+}
