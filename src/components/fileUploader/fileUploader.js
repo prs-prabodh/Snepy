@@ -27,7 +27,7 @@ export default class FileUploader extends React.Component {
 
     render() {
         return (
-            <div id={this.props.id}>
+            <div>
                 <input
                     hidden
                     type='file'
@@ -36,20 +36,11 @@ export default class FileUploader extends React.Component {
                     onChange={e => this.handleFileChosen(e.target.files[0])}
                     ref={this.inputRef}
                 />
-                {
-                    false ?
-                        (
-                            <IconButton onClick={this.onButtonClick} id='extra-btn' aria-label={this.props.label} color="secondary">
-                                <FolderOpenSharpIcon fontSize="inherit" />
-                            </IconButton>
-                        ) : (
-                            <Button id='extra-btn' onClick={this.onButtonClick} variant="outlined" color="secondary" size={this.props.btnSize}>
-                                <div id={this.props.btnTextId}>
-                                    {this.props.title}
-                                </div>
-                            </Button>
-                        )
-                }
+                <Button id={this.props.id} onClick={this.onButtonClick} variant="outlined" color="secondary" size={this.props.btnSize}>
+                    <div id={this.props.btnTextId}>
+                        {this.props.title}
+                    </div>
+                </Button>
             </div>
         );
     }

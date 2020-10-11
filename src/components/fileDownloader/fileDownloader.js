@@ -17,26 +17,17 @@ export default class FileDownloader extends React.Component {
     render() {
         return (
             <div>
-                {
-                    false ?
-                        (
-                            <IconButton onClick={this.handleSaveToPC} id='extra-btn' aria-label={this.props.label} color="secondary">
-                                <SaveSharpIcon fontSize="inherit" />
-                            </IconButton>
-                        ) : (
-                            <Button
-                                id={this.props.id}
-                                variant="outlined"
-                                color="secondary"
-                                onClick={this.handleSaveToPC}
-                                size={this.props.size}
-                            >
-                                <div id={this.props.btnTextId}>
-                                    {this.props.title}
-                                </div>
-                            </Button>
-                        )
-                }
+                <Button
+                    id={this.props.id}
+                    variant="outlined"
+                    color="secondary"
+                    onClick={this.handleSaveToPC}
+                    size={this.props.size}
+                >
+                    <div id={this.props.btnTextId}>
+                        {this.props.title}
+                    </div>
+                </Button>
             </div>
         );
     }

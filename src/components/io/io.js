@@ -36,6 +36,7 @@ class Input extends React.Component {
                     <Navbar.Brand>Input</Navbar.Brand>
                     <Nav.Item>
                         <FileUploader
+                            id='extra-btn'
                             title='Upload'
                             btnTextId='extra-btn-text'
                             handleFileContents={this.onInputChange}
