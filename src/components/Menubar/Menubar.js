@@ -19,6 +19,8 @@ import CloseIcon from '@material-ui/icons/Close';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 import "./Menubar.css";
+import FileUploader from '../fileUploader/fileUploader';
+import FileDownloader from '../fileDownloader/fileDownloader';
 
 
 export default class Menubar extends React.Component {
@@ -103,49 +105,70 @@ export default class Menubar extends React.Component {
                         }
                     />
                 </Navbar.Brand>
-                <Nav className="mr-auto" >
-                    <Nav.Item>
-                        <Button id='extra-btn' variant="outlined" color="secondary" onClick={this.onSaveClick} >
-                            <div id='extra-btn-text'>Save</div>
-                        </Button>
-                        <Button id='extra-btn' variant="outlined" color="secondary" onClick={this.toggleDialog} >
-                            <div id='extra-btn-text'>Options</div>
-                        </Button>
-                        < Dialog open={this.state.open} onClose={this.toggleDialog} aria-labelledby="form-dialog-title" maxWidth="xs" fullWidth={true} >
-                            <DialogTitle id="form-dialog-title" > Options </DialogTitle>
-                            < DialogContent className="mr-auto" >
-                                <div id="dialog-ele" >
-                                    <FormControlLabel
-                                        value="end"
-                                        control={< Switch id="drop-down" checked={this.props.checked} onChange={this.onSwitchChange} />}
-                                        label="Enter Input"
-                                        labelPlacement="end"
-                                    />
-                                </div>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="responsive-navbar-nav">
+                    <Nav className="mr-auto" >
+                        <Nav.Item>
+                            <Button id='extra-btn' variant="outlined" color="secondary" onClick={this.onSaveClick} >
+                                <div id='extra-btn-text'>Save</div>
+                            </Button>
+                        </Nav.Item>
+                        <Nav.Item>
+                            <Button id='extra-btn' variant="outlined" color="secondary" onClick={this.toggleDialog} >
+                                <div id='extra-btn-text'>Options</div>
+                            </Button>
+                            < Dialog open={this.state.open} onClose={this.toggleDialog} aria-labelledby="form-dialog-title" maxWidth="xs" fullWidth={true} >
+                                <DialogTitle id="form-dialog-title" > Options </DialogTitle>
+                                < DialogContent className="mr-auto" >
+                                    <div id="dialog-ele" >
+                                        <FormControlLabel
+                                            value="end"
+                                            control={< Switch id="drop-down" checked={this.props.checked} onChange={this.onSwitchChange} />}
+                                            label="Enter Input"
+                                            labelPlacement="end"
+                                        />
+                                    </div>
 
-                                <FormControl id="drop-down" variant="filled" >
-                                    <InputLabel size="small" id="drop-down" > Language </InputLabel>
-                                    <Select
-                                        value={this.state.language}
-                                        onChange={this.onLanguageChange}
-                                        color="secondary"
-                                        labelId="label"
-                                        id="drop-down"
-                                    >
-                                        <MenuItem value={"CPP_14"}> <b>C++ </b></MenuItem >
-                                        <MenuItem value={"C"}> <b>C </b></MenuItem >
-                                        <MenuItem value={"JAVA"}> <b>Java </b></MenuItem >
-                                    </Select>
-                                </FormControl>
-                            </DialogContent>
-                            <DialogActions>
-                                <Button onClick={this.toggleDialog} color="secondary" >
-                                    Close
+                                    <FormControl id="drop-down" variant="filled" >
+                                        <InputLabel size="small" id="drop-down" > Language </InputLabel>
+                                        <Select
+                                            value={this.state.language}
+                                            onChange={this.onLanguageChange}
+                                            color="secondary"
+                                            labelId="label"
+                                            id="drop-down"
+                                        >
+                                            <MenuItem value={"CPP_14"}> <b>C++ </b></MenuItem >
+                                            <MenuItem value={"C"}> <b>C </b></MenuItem >
+                                            <MenuItem value={"JAVA"}> <b>Java </b></MenuItem >
+                                        </Select>
+                                    </FormControl>
+                                </DialogContent>
+                                <DialogActions>
+                                    <Button onClick={this.toggleDialog} color="secondary" >
+                                        Close
                                     </Button>
-                            </DialogActions>
-                        </Dialog>
-                    </Nav.Item>
-                </Nav>
+                                </DialogActions>
+                            </Dialog>
+                        </Nav.Item>
+                        <Nav.Item>
+                            <FileUploader
+                                id='extra-btn'
+                                btnTextId='extra-btn-text'
+                                title='Upload'
+                                handleFileContents={this.props.onEditorValueChange}
+                            />
+                        </Nav.Item>
+                        <Nav.Item>
+                            <FileDownloader
+                                id='extra-btn'
+                                btnTextId='extra-btn-text'
+                                title='Download'
+                                fileName={this.props.getFileName()}
+                            />
+                        </Nav.Item>
+                    </Nav>
+                </Navbar.Collapse>
             </Navbar >
         )
     }

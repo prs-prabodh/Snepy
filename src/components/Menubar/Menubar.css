@@ -1,6 +1,6 @@
 .main-nav {
     background-color:rgb(40,42,54);
-    height: 10vh;
+    min-height: 10vh;
 }
 
 .primary-btn-text {
@@ -23,7 +23,7 @@
 }
 
 .Navbar {
-    height: '2vh';
+    /* height: '2vh'; */
 }
 
 #extra-btn {

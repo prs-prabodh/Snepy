@@ -28,6 +28,11 @@ export default class Parent extends React.Component {
                 "CPP_14": "c_cpp",
                 "JAVA": "java",
                 "C": "c_cpp",
+            },
+            fileExtensions: {
+                "CPP_14": "cpp",
+                "JAVA": "java",
+                "C": "c"
             }
         }
         this.runButtonDisabled = false;
@@ -167,6 +172,20 @@ export default class Parent extends React.Component {
             })
     }
 
+    getFileExtension = () => {
+        return this.state.fileExtensions[this.state.language];
+    }
+
+    getFileName = () => {
+        let dateUtil = new Date()
+        let fileName = 'snepy_' + dateUtil.toISOString() + '.' + this.getFileExtension();
+        return fileName.replaceAll(' ', '.');
+    }
+
+    copyToClipboard = (event) => {
+        navigator.clipboard.writeText(event.currentTarget.name === 'input' ? this.state.inputValue : this.state.outputValue);
+    }
+
     render() {
         return (
             <Fragment>
@@ -184,6 +203,8 @@ export default class Parent extends React.Component {
                     snackbarTimeout={this.state.snackbarTimeout}
                     showSpinner={this.state.showSpinner}
                     toggleSnackbar={this.toggleSnackbar}
+                    onEditorValueChange={this.onEditorChange}
+                    getFileName={this.getFileName}
                 />
                 <Editor
                     onEditorValueChange={this.onEditorChange}
@@ -199,6 +220,7 @@ export default class Parent extends React.Component {
                                 onInputChange={this.onInputChange}
                                 inputValue={this.state.inputValue}
                                 outputValue={this.state.outputValue}
+                                copyToClipboard={this.copyToClipboard}
                             />
                         )
                         : null
