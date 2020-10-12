@@ -205,6 +205,7 @@ export default class Parent extends React.Component {
                     toggleSnackbar={this.toggleSnackbar}
                     onEditorValueChange={this.onEditorChange}
                     getFileName={this.getFileName}
+                    editorValue={this.state.editorValue}
                 />
                 <Editor
                     onEditorValueChange={this.onEditorChange}

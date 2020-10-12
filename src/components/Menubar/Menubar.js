@@ -165,6 +165,7 @@ export default class Menubar extends React.Component {
                                 btnTextId='extra-btn-text'
                                 title='Download'
                                 fileName={this.props.getFileName()}
+                                editorValue={this.props.editorValue}
                             />
                         </Nav.Item>
                     </Nav>

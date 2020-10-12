@@ -1,7 +1,5 @@
 import React from "react";
 import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import FolderOpenSharpIcon from '@material-ui/icons/FolderOpenSharp';
 
 export default class FileUploader extends React.Component {
 
