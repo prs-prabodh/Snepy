@@ -23,20 +23,54 @@ export default class Parent extends React.Component {
             snackbar: false,
             snackbarText: '',
             snackbarTimeout: 1000,
+            autoComplete: false,
             editorValue: '#include<bits/stdc++.h>\nusing namespace std;\n\nint main() {\n\tcout<<"Hello, Snipper!"<<endl;\n\treturn 0;\n}',
+            editorSnippets: {
+                "CPP_14": '#include<bits/stdc++.h>\nusing namespace std;\n\nint main() {\n\tcout<<"Hello, Snipper!"<<endl;\n\treturn 0;\n}',
+                "C": "#include <stdio.h>\nint main() {\n    printf(\"Hello World!\");\n}\n",
+                "JAVA": "public class Main {\n    public static void main(String args[]) {\n        System.out.println(\"Hello World!\");\n    }\n}",
+                'PYTHON_3': 'print("Hello World!")',
+                'GO_LANG': 'package main\nimport "fmt"\nfunc main() {\n  fmt.Println("Hello World!")\n}\n',
+                'C_SHARP': 'using System;\nnamespace HelloWorld\n{\n    class Hello\n    {\n        static void Main()\n        {\n            Console.WriteLine("Hello World!");\n        }\n    }\n}\n',
+                'RUBY': 'puts "Hello World!";',
+                'RUST': 'fn main() {\n  println!("Hello, world!");\n}\n',
+                'PYTHON_2_7': 'print("Hello World!")',
+                'KOTLIN': 'fun main(args: Array<String>) {\n  println("Hello World")\n}\n',
+                'NODE_JS': 'console.log("Hello World");'
+            },
             availModes: {
                 "CPP_14": "c_cpp",
                 "JAVA": "java",
                 "C": "c_cpp",
+                "PYTHON_3": "python",
+                "GO_LANG": "golang",
+                "C_SHARP": "csharp",
+                "RUBY": "ruby",
+                "RUST": "rust",
+                "PYTHON_2_7": "python",
+                "KOTLIN": "kotlin",
+                "NODE_JS": "javascript"
             },
             fileExtensions: {
                 "CPP_14": "cpp",
                 "JAVA": "java",
-                "C": "c"
+                "C": "c",
+                "PYTHON_3": "py",
+                "GO_LANG": "go",
+                "C_SHARP": "cs",
+                "RUBY": "rb",
+                "RUST": "rs",
+                "PYTHON_2_7": "py",
+                "KOTLIN": "kt",
+                "NODE_JS": "js"
             }
         }
         this.runButtonDisabled = false;
         this.runButtonText = 'RUN';
+    }
+
+    toggleAutocomplete = (value) => {
+        this.setState({ ...this.state, autoComplete: value });
     }
 
     getEditorValue = () => {
@@ -124,7 +158,7 @@ export default class Parent extends React.Component {
     }
 
     onLanguageChange = (event) => {
-        this.setState({ ...this.state, language: event.target.value });
+        this.setState({ ...this.state, language: event.target.value, editorValue: this.state.editorSnippets[event.target.value] });
     }
 
     onInputChange = (value) => {
@@ -206,6 +240,8 @@ export default class Parent extends React.Component {
                     onEditorValueChange={this.onEditorChange}
                     getFileName={this.getFileName}
                     editorValue={this.state.editorValue}
+                    toggleAutocomplete={this.toggleAutocomplete}
+                    autoComplete={this.state.autoComplete}
                 />
                 <Editor
                     onEditorValueChange={this.onEditorChange}
@@ -213,6 +249,7 @@ export default class Parent extends React.Component {
                     height={this.state.editorHeight}
                     language={this.state.language}
                     availModes={this.state.availModes}
+                    autoComplete={this.state.autoComplete}
                 />
                 {
                     this.state.inputView ?

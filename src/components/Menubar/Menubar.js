@@ -34,6 +34,19 @@ export default class Menubar extends React.Component {
             onSwitchChange: this.props.onSwitchChange,
             onRun: this.props.onRun,
             onSave: this.props.onSave,
+            dropDownLanguages: {
+                "CPP_14": "C++",
+                "C": "C",
+                "JAVA": "Java",
+                "PYTHON_3": "Python 3",
+                "GO_LANG": "Go",
+                "C_SHARP": "C#",
+                "RUBY": "Ruby",
+                "RUST": "Rust",
+                "PYTHON_2_7": "Python 2.7",
+                "KOTLIN": "Kotlin",
+                "NODE_JS": "Javascript"
+            }
         }
     }
 
@@ -63,6 +76,10 @@ export default class Menubar extends React.Component {
 
     onSaveClick = () => {
         this.state.onSave();
+    }
+
+    onAutoCompleteChange = (event) => {
+        this.props.toggleAutocomplete(event.target.checked);
     }
 
     render() {
@@ -128,6 +145,14 @@ export default class Menubar extends React.Component {
                                             labelPlacement="end"
                                         />
                                     </div>
+                                    <div id="dialog-ele" >
+                                        <FormControlLabel
+                                            value="end"
+                                            control={< Switch id="drop-down" checked={this.props.autoComplete} onChange={this.onAutoCompleteChange} />}
+                                            label="Code Autocomplete"
+                                            labelPlacement="end"
+                                        />
+                                    </div>
 
                                     <FormControl id="drop-down" variant="filled" >
                                         <InputLabel size="small" id="drop-down" > Language </InputLabel>
@@ -138,8 +163,11 @@ export default class Menubar extends React.Component {
                                             labelId="label"
                                             id="drop-down"
                                         >
-                                            <MenuItem value={"CPP_14"}> <b>C++ </b></MenuItem >
-                                            <MenuItem value={"C"}> <b>C </b></MenuItem >
+                                            {
+                                                Object.keys(this.state.dropDownLanguages).map(key => (
+                                                    <MenuItem value={key}> <b>{this.state.dropDownLanguages[key]}</b></MenuItem >
+                                                ))
+                                            }
                                             <MenuItem value={"JAVA"}> <b>Java </b></MenuItem >
                                         </Select>
                                     </FormControl>
